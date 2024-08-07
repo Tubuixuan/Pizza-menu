@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import "./index.css";
 
 const pizzaData = [
   {
@@ -48,24 +49,55 @@ const pizzaData = [
 
 function App() {
   return (
-    <div>
-      <h1> Hello React! </h1>
-      <Pizza />
-      <Pizza />
-      <Pizza />
-      <Pizza />
-      <Pizza />
+    <div className="container">
+      <Header />
+      <Menu />
+      <Footer />
     </div>
   );
 }
 
-function Pizza() {
+function Header() {
+  return <h1 className="header footer">Fast React Pizza Co.</h1>;
+}
+
+function Menu() {
   return (
-    <>
-      <img src="pizzas/spinaci.jpg" alt="spinaci.jpg" />
-      <h2>Pizza Spinaci</h2>
-      <p>Tomato, mozarella, spinach, and ricotta cheese</p>
-    </>
+    <div className="menu">
+      <h2>Our Menu</h2>
+      <Pizza
+        name="Pizza Spinaci"
+        ingredients="Tomato, mozarella, spinach, and ricotta cheese"
+        photoName="pizzas/spinaci.jpg"
+        price={10} //"trong nháy kép là chuỗi" {trong ngoặc là số}
+      />
+
+      <Pizza
+        name="Pizza Funghi"
+        ingredients="Tomato, mushrooms"
+        photoName="pizzas/funghi.jpg"
+        price={12}
+      />
+    </div>
+  );
+}
+
+function Pizza(props) {
+  return (
+    <div className="pizza">
+      <img src={props.photoName} alt={props.name} />
+      <h3>{props.name}</h3>
+      <p>{props.ingredients}</p>
+      <span>{props.price + 3}</span>
+    </div>
+  );
+}
+
+function Footer() {
+  return (
+    <footer className="footer">
+      {new Date().toLocaleTimeString()}. We're curently open
+    </footer>
   );
 }
 
